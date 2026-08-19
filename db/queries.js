@@ -1,5 +1,11 @@
 import pool from "./db.js";
 
+async function getUserById(id) {
+	const query = 'SELECT * FROM users WHERE id = $1';
+	const { rows } = await pool.query(query, [id]);
+	return rows[0];
+}
+
 async function getUserByUsername(username) {
 	const query = 'SELECT * FROM users WHERE username = $1';
 	const values = [username];
@@ -54,4 +60,4 @@ async function updatePostById(id, title, content) {
 	return result.rows[0];
 }
 
-export { getUserByUsername, createUser, InsertPost, getAllPosts, getPostById, deletePostById, updatePostById };
+export { getUserById, getUserByUsername, createUser, InsertPost, getAllPosts, getPostById, deletePostById, updatePostById };
