@@ -19,6 +19,7 @@ import {
 import indexRouter from './routes/indexRouter.js';
 import signRouter from './routes/signupRouter.js';
 import loginRouter from './routes/loginRouter.js';
+import logoutRouter from './routes/logoutRouther.js';
 
 const __dirname = import.meta.dirname;
 const PORT = process.env.PORT || 3000
@@ -68,6 +69,7 @@ app.use('/', indexRouter);
 app.use('/sign-up', signRouter);
 
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 app.listen(PORT, ()=>{
 	console.log(`App running in port ${PORT}`);
