@@ -12,11 +12,13 @@ import {
 	getAllPosts,
 	getPostById,
 	deletePostById,
-	updatePostById
+	updatePostById,
+	getUserById
 } from './db/queries.js';
 
 import indexRouter from './routes/indexRouter.js';
 import signRouter from './routes/signupRouter.js';
+import loginRouter from './routes/loginRouter.js';
 
 const __dirname = import.meta.dirname;
 const PORT = process.env.PORT || 3000
@@ -29,15 +31,14 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 
 
-passport.use(new Strategy(
-	(username, password, done)=>{
+passport.use(new Strategy( async (username, password, done)=>{
 		try{
-			const user = getUserByUsername(username);
+			const user = await getUserByUsername(username);
 			if(!user){
 				return done(null, false, {message: 'Incorrect username'});
 			}
-			const isValidPassword = bcrypt.compareSync(password, user.password);
-			if(!isValidPassword){
+			const match = await bcrypt.compare(password, user.password);
+			if(!match){
 				return done(null, false, {message: 'Incorrect password'});
 			}
 			return done(null, user);
@@ -51,9 +52,9 @@ passport.serializeUser((user, done)=>{
 	done(null, user.id);
 });
 
-passport.deserializeUser((id, done)=>{
+passport.deserializeUser(async (id, done)=>{
 	try{
-		const user = getUserById(id);
+		const user = await getUserById(id);
 		done(null, user);
 	}catch(err){
 		done(err);
@@ -65,6 +66,8 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/sign-up', signRouter);
+
+app.use('/login', loginRouter);
 
 app.listen(PORT, ()=>{
 	console.log(`App running in port ${PORT}`);
