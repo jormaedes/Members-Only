@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/jormaedes/Members-Only#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
