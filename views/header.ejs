@@ -1,0 +1,19 @@
+<header>
+	<div class="container">
+		<div>
+			<h1><a href="/">Members Only</a></h1>
+		</div>
+		<nav>
+			<ul>
+				<% if (!locals.user) {%>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/sign-up">Sign up</a></li>
+				<% } else { %>
+					<li><a href="/join-club">Join the Club</a></li>
+					<li><a href="/become-admin">Become admin</a></li>
+					<li><a href="/logout">Logout</a></li>
+				<% } %>
+			</ul>
+		</nav>
+	</div>
+</header>
