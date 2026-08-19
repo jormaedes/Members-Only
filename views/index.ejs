@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Members Only</title>
+</head>
+<body>
+	<%- include('header', { user }) %>
+	<% if (!locals.user) {%>
+		<h1>Welcome to Members Only</h1>
+		<p>Please <a href="/login">login</a> or <a href="/register">register</a> to access the content.</p>
+	<% } else { %>
+		<h1>Welcome, <%= locals.user.username %>!</h1>
+		<p>You are logged in. <a href="/logout">Logout</a></p>
+		<p><a href="/posts">View Posts</a></p>
+	<% } %>
+	
+</body>
+</html>
