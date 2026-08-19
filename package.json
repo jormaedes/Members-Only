@@ -1,0 +1,31 @@
+{
+  "name": "members-only",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch --env-file=.env app.js",
+    "start": "node --env-file=.env"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jormaedes/Members-Only.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/jormaedes/Members-Only/issues"
+  },
+  "homepage": "https://github.com/jormaedes/Members-Only#readme",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.23.0"
+  }
+}
