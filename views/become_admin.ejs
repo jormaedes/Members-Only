@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Members Only</title>
+</head>
+<body>
+	<%- include('header', { user }) %>
+	<main>
+		<form action="/become-admin" method="post">
+			<p>Insert key pass to become a admin</p>
+			<p> What has teeth but cannot bite?</p>
+			<input type="text" name="answer" id="answer">
+			<% if(locals.errorMsg) { %>
+				<p>error</p>	
+			<% } %>
+			<input type="submit" value="submit">
+		</form>
+	</main>
+	<%- include('footer') %>
+</body>
+</html>
