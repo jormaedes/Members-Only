@@ -1,0 +1,8 @@
+<!-- showmessages.ejs -->
+<% if (locals.messages && messages.length > 0) { %>
+	<% messages.forEach(msg => { %>
+		<%- include('msg', { message: msg, user: locals.user }) %>
+	<% }); %>
+<% } else { %>
+	<p>No messages.</p>
+<% } %>

@@ -6,15 +6,15 @@
 	<title>Members Only</title>
 </head>
 <body>
-	<%- include('header', { user }) %>
+	<%- include('header', { user: locals.user }) %>
 	<% if (!locals.user) {%>
-		<h1>Welcome to Members Only</h1>
-		<p>Please <a href="/login">login</a> or <a href="/register">register</a> to access the content.</p>
+		<h2>Welcome to Members Only</h2>
+		<%- include('showmessages', { messages: locals.messages, user: undefined }) %>
 	<% } else { %>
-		<h1>Welcome, <%= locals.user.username %>!</h1>
-		<p>You are logged in. <a href="/logout">Logout</a></p>
+		<h2>Welcome, <%= locals.user.username %>!</h2>
+		<%- include('showmessages', { messages: locals.messages, user: locals.user }) %>
 		<p><a href="/new-message">Add message</a></p>
 	<% } %>
-	
+	<%- include('footer') %>
 </body>
 </html>

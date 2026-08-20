@@ -1,0 +1,25 @@
+<!-- msg.ejs -->
+<article class="message">
+	<% if (!locals.user || !locals.user.is_member) { %>
+		<div>
+			<p class="meta"> ************** </p>
+			<p> ************* </p>
+		</div>
+	<% } %>
+	<% if (locals.user && locals.user.is_member) { %>
+		<div>
+			<p class="meta"><%= message.first_name %> <%= message.last_name %> </p>
+			<p> <%= new Date(message.created_at).toLocaleDateString() %></p>
+		</div>
+	<% } %>
+
+	<% if (locals.user && locals.user.is_admin) { %>
+		<form action="/messages/<%= message.id %>/delete" method="POST">
+			<button type="submit">Delete</button>
+		</form>
+	<% } %>
+	<div>
+		<h3><%= message.title %></h3>
+		<p><%= message.text %></p>
+	</div>
+</article>
