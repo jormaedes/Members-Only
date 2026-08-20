@@ -1,21 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Members Only</title>
-</head>
-
-<body>
-	<div>
-		<p> <%= message.title %> </p>
-		<p> <%= message.text %> </p>
-	</div>
-	<form action="/messages/<%= message.id %>/confirm-delete" method="post">
-		<a href="/">Cancel</a>
-		<input type="submit" value="Confirm delete">
-	</form>
-</body>
-
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Delete message</title>
+		<link rel="stylesheet" href="/css/output.css">
+		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	</head>
+	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+		<%- include('header') %>
+		<main class="container mx-auto py-16 flex-1">
+			<div class="w-full max-w-2xl card">
+				<h2 class="text-xl font-semibold">Confirm delete</h2>
+				<div class="mt-4">
+					<p class="font-semibold"><%= message.title %></p>
+					<p class="text-gray-700 mt-2"><%= message.text %></p>
+				</div>
+				<form action="/messages/<%= message.id %>/confirm-delete" method="post" class="mt-6 flex gap-4">
+					<a href="/" class="px-4 py-2 border rounded-md">Cancel</a>
+					<button class="px-4 py-2 bg-red-600 text-white rounded-md">Confirm delete</button>
+				</form>
+			</div>
+		</main>
+		<%- include('footer') %>
+	</body>
 </html>

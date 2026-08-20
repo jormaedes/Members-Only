@@ -1,39 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Members Only</title>
-</head>
-
-<body>
-	<% let usernameError=undefined, passwordError=undefined; %>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Login</title>
+		<link rel="stylesheet" href="/css/output.css">
+		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	</head>
+	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+		<% let usernameError=undefined, passwordError=undefined; %>
 		<%- include('header') %>
-			<% if (messages && messages.length> 0) {
-				usernameError = messages.find(m => m.includes("username"));
-				passwordError = messages.find(m => m.includes("password"));
+		<main class="container mx-auto grid place-items-center py-16 flex-1">
+			<div class="w-full max-w-md card">
+				<% if (messages && messages.length> 0) {
+					usernameError = messages.find(m => m.includes("username"));
+					passwordError = messages.find(m => m.includes("password"));
 				} %>
-				<form action="/login" method="post">
-					<h2>Login</h2>
-					<label for="username">Username:</label>
-					<input type="text" id="username" name="username" required>
-					<% if (usernameError) { %>
-						<p class="field-error">
-							<%= usernameError %>
-						</p>
+				<h2 class="text-2xl font-extrabold mb-2">Login</h2>
+				<form action="/login" method="post" class="space-y-4">
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Username</label>
+						<input class="input" type="text" id="username" name="username" required>
+						<% if (usernameError) { %>
+							<p class="text-sm text-red-600"><%= usernameError %></p>
 						<% } %>
-
-							<label for="password">Password:</label>
-							<input type="password" id="password" name="password" required>
-							<% if (passwordError) { %>
-								<p class="field-error">
-									<%= passwordError %>
-								</p>
-								<% } %>
-									<button type="submit">Login</button>
+					</div>
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Password</label>
+						<input class="input" type="password" id="password" name="password" required>
+						<% if (passwordError) { %>
+							<p class="text-sm text-red-600"><%= passwordError %></p>
+						<% } %>
+					</div>
+					<div class="flex justify-center">
+						<button class="btn-primary" type="submit">Login</button>
+					</div>
 				</form>
-				<%- include('footer') %>
-</body>
-
+			</div>
+		</main>
+		<%- include('footer') %>
+	</body>
 </html>

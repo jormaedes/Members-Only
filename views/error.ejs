@@ -19,6 +19,9 @@
         <% if (message) { %>
           <p class="mt-4 text-gray-700"><%= message %></p>
         <% } %>
+        <% if (locals.errors) { %>
+          <%- include('error_types', { errors: errors }) %>
+        <% } %>
         <div class="mt-6 flex gap-2">
           <a href="/" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Home</a>
           <a href="javascript:history.back()" class="px-4 py-2 border rounded-md hover:bg-gray-50">Go back</a>

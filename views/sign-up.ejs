@@ -1,25 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Members Only</title>
-</head>
-<body>
-	<%- include('header', { user: locals.user }) %>
-	<form action="/sign-up" method="post">
-		<h2>Sign Up</h2>
-		<label for="fistName">First Name:</label>
-		<input type="text" id="firstName" name="firstName" required>
-		<label for="lastName">Last Name:</label>
-		<input type="text" id="lastName" name="lastName" required>
-		<label for="username">Username:</label>
-		<input type="text" id="username" name="username" required>
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required>
-		<label for="confirmPassword">Confirm Password:</label>
-		<input type="password" id="confirmPassword" name="confirmPassword" required>
-		<button type="submit">Sign Up</button>
-	</form>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Create your account</title>
+		<link rel="stylesheet" href="/css/output.css">
+		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	</head>
+	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+		<%- include('header', { user: locals.user }) %>
+		<main class="container mx-auto grid place-items-center py-16 flex-1">
+			<div class="w-full max-w-md card">
+				<h2 class="text-2xl font-extrabold text-center mb-2">Create your account</h2>
+				<p class="text-sm text-gray-500 text-center mb-6">Join MemberOnly and become part of the club.</p>
+				<form action="/sign-up" method="post" class="space-y-4">
+					<div class="grid grid-cols-2 gap-4">
+						<input class="input" type="text" id="firstName" name="firstName" placeholder="First name" required>
+						<input class="input" type="text" id="lastName" name="lastName" placeholder="Last name" required>
+					</div>
+					<input class="input" type="text" id="username" name="username" placeholder="Choose a username" required>
+					<input class="input" type="password" id="password" name="password" placeholder="Create a password" required>
+					<input class="input" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required>
+					<div class="flex items-center justify-center">
+						<button class="btn-primary" type="submit">Create account</button>
+					</div>
+				</form>
+				<p class="text-center text-sm text-gray-500 mt-4">Already have an account? <a href="/login" class="text-indigo-600">Log in</a></p>
+			</div>
+		</main>
+		<%- include('footer') %>
+	</body>
 </html>

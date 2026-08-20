@@ -1,20 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Members Only</title>
-</head>
-<body>
-	<%- include('header', { user }) %>
-	<main>
-		<form action="/become-member" method="post">
-			<p>Insert key pass to become a member</p>
-			<p>What goes around and around but never moves?</p>
-			<input type="text" name="answer" id="answer">
-			<input type="submit" value="submit">
-		</form>
-	</main>
-	<%- include('footer') %>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Join the Club</title>
+		<link rel="stylesheet" href="/css/output.css">
+		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	</head>
+	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+		<%- include('header', { user }) %>
+		<main class="container mx-auto grid place-items-center py-16 flex-1">
+			<div class="w-full max-w-md card text-center">
+				<h2 class="text-2xl font-extrabold mb-2">Join the Club</h2>
+				<p class="text-sm text-gray-600 mb-6">Enter the secret passcode to become a member of the club.</p>
+				<form action="/become-member" method="post" class="space-y-4">
+					<input class="input" type="text" name="answer" id="answer" placeholder="Secret passcode">
+					<div class="flex justify-center">
+						<button class="btn-primary" type="submit">Join the Club</button>
+					</div>
+				</form>
+			</div>
+		</main>
+		<%- include('footer') %>
+	</body>
 </html>

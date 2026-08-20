@@ -31,8 +31,8 @@ messageRouter.post('/', validatorMessage, async (req, res) => {
 		if (!req.isAuthenticated())
 			return res.redirect('/');
 		const { title, message } = req.body;
-		const err = validationResult(req);
-		if (!err.isEmpty()) {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
 			return res.status(400).render('error', { status: 400, message: 'Validation failed.', errors: errors.array() });
 		}
 		const id = req.user.id;

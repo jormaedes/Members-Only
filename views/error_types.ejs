@@ -1,0 +1,10 @@
+<% if (errors && Array.isArray(errors) && errors.length > 0) { %>
+  <div class="mt-4 bg-red-50 border border-red-200 rounded-md p-4">
+    <p class="text-sm font-semibold text-red-700">Validation errors:</p>
+    <ul class="mt-2 list-disc list-inside text-sm text-red-600">
+      <% errors.forEach(function(err){ %>
+        <li><%= err.msg %> <% if (err.param) { %> (<%= err.param %>) <% } %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>

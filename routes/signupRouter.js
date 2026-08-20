@@ -21,8 +21,8 @@ signRouter.post('/', validatorSign, async (req, res) => {
 		const { firstName, lastName, username, password, confirmPassword } = req.body;
 		if (password !== confirmPassword)
 			return res.status(400).render('error', { status: 400, message: 'Password is not equal' });
-		const error = validationResult(req);
-		if (!error.isEmpty()) {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
 			return res.status(400).render('error', { status: 400, message: 'Validation failed.', errors: errors.array() });
 		}
 		const hashedPassword = await bcrypt.hash(password, 10);

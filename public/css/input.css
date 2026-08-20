@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Hanken+Grotesk:wght@400;600;800&display=swap');
+@import "tailwindcss";
+
+:root {
+	--color-primary: #374151; /* neutral dark */
+	--color-accent: #1f2937; /* darker */
+	--color-muted: #f3f4f6;
+}
+
+@layer base {
+	html, body {
+		height: 100%;
+	}
+	body {
+		font-family: 'Hanken Grotesk', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+		background-color: #f8fafc; /* very light */
+		color: #0f172a;
+	}
+	a { color: inherit; }
+}
+
+@layer components {
+	.btn-primary {
+		@apply inline-flex items-center gap-2 bg-[#222831] text-white px-4 py-2 rounded-md shadow-sm hover:bg-[#1f2937];
+	}
+	.card {
+		@apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+	}
+	.input {
+		@apply w-full border border-gray-200 rounded-md px-3 py-2 bg-white;
+	}
+}
+
+/* utilities for small avatar */
+.avatar-sm { @apply inline-flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50 text-indigo-700 font-semibold; }
+
+/* simple responsive container */
+.site-container mx-auto { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+/* Hide focus outlines except for keyboard */
+:focus:not(:focus-visible) { outline: none; }
+

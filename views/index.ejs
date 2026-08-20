@@ -1,20 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Members Only</title>
-</head>
-<body>
-	<%- include('header', { user: locals.user }) %>
-	<% if (!locals.user) {%>
-		<h2>Welcome to Members Only</h2>
-		<%- include('showmessages', { messages: locals.messages, user: undefined }) %>
-	<% } else { %>
-		<h2>Welcome, <%= locals.user.username %>!</h2>
-		<%- include('showmessages', { messages: locals.messages, user: locals.user }) %>
-		<p><a href="/new-message">Add message</a></p>
-	<% } %>
-	<%- include('footer') %>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>MemberOnly</title>
+		<link rel="stylesheet" href="/css/output.css">
+		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	</head>
+	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+		<%- include('header', { user: locals.user }) %>
+		<main class="container mx-auto mt-10 flex-1">
+			<% if (!locals.user) { %>
+				<section class="text-center mb-8">
+					<h1 class="text-3xl font-extrabold">Welcome to MemberOnly</h1>
+					<p class="text-gray-600 mt-2">Join the club to post messages and see timestamps.</p>
+				</section>
+			<% } else { %>
+				<section class="flex items-center justify-between mb-6">
+					<div>
+						<p class="text-sm text-gray-600">Welcome, <%= locals.user.first_name %> <%= locals.user.last_name %></p>
+						<h2 class="text-4xl font-extrabold">Messages</h2>
+					</div>
+					<div>
+						<% if (locals.user && locals.user.is_member) { %>
+							<a href="/new-message" class="btn-primary"><i class="ri-edit-box-line"></i> New Message</a>
+						<% } else { %>
+							<a href="/become-member" class="px-4 py-2 border rounded-md text-sm">Join the Club</a>
+						<% } %>
+					</div>
+				</section>
+			<% } %>
+
+			<section class="px-2 sm:px-0">
+				<%- include('showmessages', { messages: locals.messages, user: locals.user }) %>
+			</section>
+		</main>
+		<%- include('footer') %>
+	</body>
 </html>
