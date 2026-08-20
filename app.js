@@ -5,17 +5,8 @@ import passport from 'passport';
 import Strategy from 'passport-local';
 import session from 'express-session';
 import bcrypt from 'bcryptjs';
-import { 
-	getUserByUsername,
-	createUser,
-	InsertPost,
-	getAllPosts,
-	getPostById,
-	deletePostById,
-	updatePostById,
-	getUserById
-} from './db/queries.js';
 
+import { getUserByUsername, getUserById } from './db/queries.js';
 import indexRouter from './routes/indexRouter.js';
 import signRouter from './routes/signupRouter.js';
 import loginRouter from './routes/loginRouter.js';
@@ -79,6 +70,10 @@ app.use('/new-message', messageRouter);
 app.use('/become-member', memberRouter);
 app.use('/become-admin', becomeAdminRouter);
 app.use('/messages', deleteMessageRouter);
+
+app.use((req, res) => {
+	res.status(500).render('error', { status: 500, message: 'Internal Server Error', details: 'An unexpected error occurred.' });
+});
 
 app.listen(PORT, ()=>{
 	console.log(`App running in port ${PORT}`);
