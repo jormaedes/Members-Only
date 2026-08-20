@@ -14,9 +14,7 @@
 	<% } %>
 
 	<% if (locals.user && locals.user.is_admin) { %>
-		<form action="/messages/<%= message.id %>/delete" method="POST">
-			<button type="submit">Delete</button>
-		</form>
+		<a href="/messages/<%= message.id %>/delete">Delete</a>
 	<% } %>
 	<div>
 		<h3><%= message.title %></h3>
