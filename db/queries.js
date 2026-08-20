@@ -65,4 +65,9 @@ async function becomeMember(id) {
 	await pool.query(query, [id]);
 }
 
-export { becomeMember, getUserById, getUserByUsername, createUser, InsertPost, getAllPosts, getPostById, deletePostById, updatePostById };
+async function becomeAdmin(id) {
+	const query = 'UPDATE users SET is_admin = true WHERE id=$1';
+	await pool.query(query, [id]);
+}
+
+export { becomeAdmin, becomeMember, getUserById, getUserByUsername, createUser, InsertPost, getAllPosts, getPostById, deletePostById, updatePostById };
