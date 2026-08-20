@@ -24,20 +24,20 @@ async function createUser(firstName, lastName, username, password) {
 }
 
 async function InsertPost(title, content, user_id) {
-	const query = 'INSERT INTO posts (title, content, user_id) VALUES ($1, $2, $3) RETURNING *';
+	const query = 'INSERT INTO messages (title, text, user_id) VALUES ($1, $2, $3) RETURNING *';
 	const values = [title, content, user_id];
 	const result = await pool.query(query, values);
 	return result.rows[0];
 }
 
 async function getAllPosts() {
-	const query = 'SELECT * FROM posts ORDER BY created_at DESC';
+	const query = 'SELECT * FROM messages ORDER BY created_at DESC';
 	const result = await pool.query(query);
 	return result.rows;
 }
 
 async function getPostById(id) {
-	const query = 'SELECT * FROM posts WHERE id = $1';
+	const query = 'SELECT * FROM messages WHERE id = $1';
 	const values = [id];
 	const result = await pool.query(query, values);
 	if (result.rows.length > 0) {
@@ -48,13 +48,13 @@ async function getPostById(id) {
 }
 
 async function deletePostById(id) {
-	const query = 'DELETE FROM posts WHERE id = $1';
+	const query = 'DELETE FROM messages WHERE id = $1';
 	const values = [id];
 	await pool.query(query, values);
 }
 
 async function updatePostById(id, title, content) {
-	const query = 'UPDATE posts SET title = $1, content = $2 WHERE id = $3 RETURNING *';
+	const query = 'UPDATE messages SET title = $1, content = $2 WHERE id = $3 RETURNING *';
 	const values = [title, content, id];
 	const result = await pool.query(query, values);
 	return result.rows[0];
