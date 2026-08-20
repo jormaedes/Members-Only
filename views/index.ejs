@@ -9,7 +9,7 @@
 	</head>
 	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
 		<%- include('header', { user: locals.user }) %>
-		<main class="container mx-auto mt-10 flex-1">
+		<main class="container mx-auto mt-10 flex-1 px-2 md:px-0">
 			<% if (!locals.user) { %>
 				<section class="text-center mb-8">
 					<h1 class="text-3xl font-extrabold">Welcome to MemberOnly</h1>
