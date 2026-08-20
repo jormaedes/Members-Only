@@ -60,4 +60,9 @@ async function updatePostById(id, title, content) {
 	return result.rows[0];
 }
 
-export { getUserById, getUserByUsername, createUser, InsertPost, getAllPosts, getPostById, deletePostById, updatePostById };
+async function becomeMember(id) {
+	const query = 'UPDATE users SET is_member = true WHERE id=$1';
+	await pool.query(query, [id]);
+}
+
+export { becomeMember, getUserById, getUserByUsername, createUser, InsertPost, getAllPosts, getPostById, deletePostById, updatePostById };
