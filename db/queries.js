@@ -31,7 +31,7 @@ async function InsertPost(title, content, user_id) {
 }
 
 async function getAllPosts() {
-	const query = 'SELECT * FROM messages ORDER BY created_at DESC';
+	const query = 'SELECT messages.id, first_name, last_name, title, text, created_at FROM users JOIN messages ON users.id = messages.user_id ORDER BY created_at DESC';
 	const result = await pool.query(query);
 	return result.rows;
 }
