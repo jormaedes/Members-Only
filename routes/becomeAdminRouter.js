@@ -4,7 +4,7 @@ import { becomeAdmin } from "../db/queries.js";
 const becomeAdminRouter = Router();
 
 becomeAdminRouter.get('/', (req, res) => {
-	if (!req.isAuthenticated() || !req.user.is_member)
+	if (!req.isAuthenticated() || !req.user.is_member || req.user.is_admin)
 		return res.redirect('/');
 	res.render('become_admin', { user: req.user, errorMsg: undefined });
 })
