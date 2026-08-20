@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Members Only</title>
 </head>
+
 <body>
-	<%- include('header') %>
-	<form action="/login" method="post">
-		<h2>Login</h2>
-		<label for="username">Username:</label>
-		<input type="text" id="username" name="username" required>
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required>
-		<button type="submit">Login</button>
-	</form>
-	<%- include('footer') %>
+	<% let usernameError=undefined, passwordError=undefined; %>
+		<%- include('header') %>
+			<% if (messages && messages.length> 0) {
+				usernameError = messages.find(m => m.includes("username"));
+				passwordError = messages.find(m => m.includes("password"));
+				} %>
+				<form action="/login" method="post">
+					<h2>Login</h2>
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="username" required>
+					<% if (usernameError) { %>
+						<p class="field-error">
+							<%= usernameError %>
+						</p>
+						<% } %>
+
+							<label for="password">Password:</label>
+							<input type="password" id="password" name="password" required>
+							<% if (passwordError) { %>
+								<p class="field-error">
+									<%= passwordError %>
+								</p>
+								<% } %>
+									<button type="submit">Login</button>
+				</form>
+				<%- include('footer') %>
 </body>
+
 </html>

@@ -7,7 +7,9 @@ const loginRouter = Router();
 loginRouter.get('/', (req, res) => {
 	if(req.isAuthenticated())
 		return res.redirect('/');
-	res.render('login');
+	const messages = req.session.messages || [];
+	req.session.messages = [];
+	res.render('login', { messages });
 })
 
 loginRouter.post('/', passport.authenticate("local", {
