@@ -1,35 +1,21 @@
-<!-- msg.ejs -->
-<article class="card mb-6">
+<article class="card message-card">
 	<% if (locals.user && locals.user.is_member) { %>
-		<div class="flex items-start gap-4">
-			<div class="avatar-sm"> <%= (message.first_name || 'U').slice(0,1) %><%= (message.last_name || '').slice(0,1) %> </div>
-			<div class="flex-1">
-				<div class="flex items-center justify-between">
-					<div>
-						<p class="text-sm font-semibold"><%= message.first_name %> <%= message.last_name %></p>
-						<p class="text-xs text-gray-500"><%= new Date(message.created_at).toLocaleString() %></p>
-					</div>
-					<% if (locals.user && locals.user.is_admin) { %>
-						<a href="/messages/<%= message.id %>/delete" class="text-gray-400 hover:text-red-600"><i class="ri-close-circle-fill"></i></a>
-					<% } %>
-				</div>
-
-				<h3 class="mt-4 text-lg font-semibold"><%= message.title %></h3>
-				<p class="mt-2 text-gray-700"><%= message.text %></p>
+		<div class="message-head">
+			<div class="avatar-sm"><%= (message.first_name || 'U').slice(0, 1) %><%= (message.last_name || '').slice(0, 1) %></div>
+			<div>
+				<p class="message-author"><%= message.first_name %> <%= message.last_name %></p>
+				<p class="message-date"><%= new Date(message.created_at).toLocaleString() %></p>
 			</div>
+			<% if (locals.user && locals.user.is_admin) { %>
+				<a href="/messages/<%= message.id %>/delete" class="message-delete" aria-label="Delete message" title="Delete message"><i class="ri-close-circle-fill" aria-hidden="true"></i></a>
+			<% } %>
 		</div>
+		<h2 class="message-title"><%= message.title %></h2>
+		<p class="message-text"><%= message.text %></p>
 	<% } else { %>
-		<div>
-			<div class="flex-1">
-				<div class="flex items-center justify-between">
-					<div>
-						<p class="text-sm font-semibold">***** ****** </p>
-						<p class="text-xs text-gray-500">*********</p>
-					</div>
-				</div>
-			</div>
-			<h3 class="text-lg font-semibold"><%= message.title %></h3>
-			<p class="mt-2 text-gray-700"><%= message.text %></p>
-		</div>
+		<p class="message-author">***** ******</p>
+		<p class="message-date">*********</p>
+		<h2 class="message-title"><%= message.title %></h2>
+		<p class="message-text"><%= message.text %></p>
 	<% } %>
 </article>

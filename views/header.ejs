@@ -1,55 +1,52 @@
-<header class="bg-white border-b px-2 md:px-0">
-	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-	<div class="container mx-auto flex items-center justify-between h-16">
-		<div class="flex items-center gap-6">
-			<a href="/" class="text-2xl font-extrabold text-gray-900">MemberOnly</a>
-			<nav class="hidden md:flex items-center gap-6 text-sm text-gray-600">
-				<% if (locals.user && !user.is_member) {%>
-				<a href="/become-member" class="hover:text-gray-900">Join the Club</a>
+<header class="site-header">
+	<div class="site-container">
+		<div class="header-left">
+			<a href="/" class="brand" aria-label="MemberOnly home">
+				<span class="brand-mark">M</span>
+				<span class="brand-name">MemberOnly</span>
+			</a>
+			<nav class="header-nav" aria-label="Main navigation">
+				<% if (locals.user && !user.is_member) { %>
+				<a href="/become-member">Join the club</a>
 				<% } %>
-				<% if (locals.user && !user.is_admin) {%>
-				<a href="/become-admin" class="hover:text-gray-900">Become admin</a>
+				<% if (locals.user && !user.is_admin) { %>
+				<a href="/become-admin">Become admin</a>
 				<% } %>
 			</nav>
 		</div>
-
-		<div class="flex items-center gap-4">
+		<div class="header-actions">
 			<% if (!locals.user) { %>
-				<a href="/login" class="text-md px-4 py-2 border border-indigo-700 text-indigo-700 hover:bg-[#222831] hover:border-none hover:text-white rounded-md hidden md:flex">Login</a>
-				<a href="/sign-up" class="btn-primary hidden md:flex">Sign up</a>
+				<a href="/login" class="header-login">Log in</a>
+				<a href="/sign-up" class="header-signup">Create account</a>
 			<% } else { %>
-				<span class="text-sm text-gray-600 hidden sm:inline">Welcome, <%= locals.user.first_name %></span>
-				<a href="/logout" class="px-3 py-1.5 bg-[#222831] rounded-md text-md text-white hover:bg-indigo-700 hidden md:inline">Logout</a>
-			<% } %>
-			<!-- mobile menu button -->
-			<button id="menu-toggle" class="md:hidden ml-2 px-2 rounded-md border" aria-label="Open menu">
-				<i class="ri-menu-line text-xl"></i>
-			</button>
-		</div>
-	</div>
-
-	<!-- mobile menu panel -->
-	<div id="mobile-menu" class="md:hidden hidden border-t bg-white">
-		<div class="container mx-auto py-3 flex flex-col gap-2">
-			<a href="/become-member" class="px-3 py-2 rounded hover:bg-gray-50">Join the Club</a>
-			<a href="/become-admin" class="px-3 py-2 rounded hover:bg-gray-50">Become admin</a>
-			<% if (!locals.user) { %>
-				<a href="/login" class="px-3 py-2 rounded hover:bg-gray-50">Login</a>
-				<a href="/sign-up" class="px-3 py-2 rounded hover:bg-gray-50">Sign up</a>
-			<% } else { %>
-				<div class="px-3 py-2 text-sm text-gray-700">Signed in as <span class="font-medium"><%= locals.user.username %></span></div>
-				<a href="/logout" class="px-3 py-2 rounded hover:bg-gray-50">Logout</a>
+				<span class="header-welcome">Welcome, <%= locals.user.first_name %></span>
+				<a href="/logout" class="header-login">Log out</a>
 			<% } %>
 		</div>
+		<button id="menu-toggle" class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+			<span></span><span></span><span></span>
+		</button>
 	</div>
-
+	<div id="mobile-menu" class="mobile-menu hidden">
+		<% if (locals.user && !user.is_member) { %><a href="/become-member">Join the club</a><% } %>
+		<% if (locals.user && !user.is_admin) { %><a href="/become-admin">Become admin</a><% } %>
+		<% if (!locals.user) { %>
+			<a href="/login">Log in</a>
+			<a href="/sign-up">Create account</a>
+		<% } else { %>
+			<p>Signed in as <strong><%= locals.user.username %></strong></p>
+			<a href="/logout">Log out</a>
+		<% } %>
+	</div>
 	<script>
-		(function(){
-			const btn = document.getElementById('menu-toggle');
+		(function () {
+			const button = document.getElementById('menu-toggle');
 			const menu = document.getElementById('mobile-menu');
-			if (!btn || !menu) return;
-			btn.addEventListener('click', function(){
-				menu.classList.toggle('hidden');
+			if (!button || !menu) return;
+			button.addEventListener('click', function () {
+				const isOpen = button.getAttribute('aria-expanded') === 'true';
+				button.setAttribute('aria-expanded', String(!isOpen));
+				menu.classList.toggle('hidden', isOpen);
 			});
 		})();
 	</script>

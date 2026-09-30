@@ -1,8 +1,7 @@
-<!-- showmessages.ejs -->
 <% if (locals.messages && messages.length > 0) { %>
 	<% messages.forEach(msg => { %>
 		<%- include('msg', { message: msg, user: locals.user }) %>
 	<% }); %>
 <% } else { %>
-	<p>No messages.</p>
+	<p class="message-list-empty">No messages here yet. Start the conversation when you're ready.</p>
 <% } %>

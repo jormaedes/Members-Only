@@ -9,9 +9,9 @@
 <body class="min-h-screen flex flex-col bg-gray-50">
   <%- include('header') %>
 
-  <main class="flex-auto flex items-center justify-center py-20 px-4">
-    <div class="max-w-2xl w-full">
-      <div class="bg-white rounded-lg shadow p-6 border-l-4 border-red-500">
+  <main class="site-container page-main grid place-items-center">
+      <div class="max-w-2xl w-full card">
+        <p class="eyebrow">Something went wrong</p>
         <h1 class="text-2xl font-semibold text-gray-900">An error occurred</h1>
         <% if (typeof status !== 'undefined') { %>
           <p class="mt-2 text-sm text-gray-600">Status: <%= status %></p>
@@ -23,11 +23,10 @@
           <%- include('error_types', { errors: errors }) %>
         <% } %>
         <div class="mt-6 flex gap-2">
-          <a href="/" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Home</a>
-          <a href="javascript:history.back()" class="px-4 py-2 border rounded-md hover:bg-gray-50">Go back</a>
+          <a href="/" class="btn-primary">Home</a>
+          <a href="javascript:history.back()" class="btn-secondary">Go back</a>
         </div>
       </div>
-    </div>
   </main>
 
   <%- include('footer') %>

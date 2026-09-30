@@ -9,23 +9,23 @@
 	</head>
 	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
 		<%- include('header', { user: locals.user }) %>
-		<main class="container mx-auto py-16 flex-1">
-			<a href="/" class="text-sm text-gray-600 inline-block mb-4">&larr; Back to Club</a>
+		<main class="site-container page-main">
+			<a href="/" class="auth-back">&larr; Back to the club</a>
 			<div class="w-full max-w-2xl card mx-auto">
-				<h2 class="text-2xl font-extrabold mb-4">Create a new message</h2>
+				<h1 class="text-2xl font-extrabold mb-2">Create a new message</h1>
 				<p class="text-sm text-gray-500 mb-6">Share something with the club.</p>
-				<form action="/new-message" method="post" class="space-y-4">
-					<div>
-						<label class="block text-sm font-medium text-gray-700">Title</label>
+				<form action="/new-message" method="post" class="space-y-5">
+					<div class="field">
+						<label for="title">Title</label>
 						<input class="input" type="text" name="title" id="title" placeholder="Give your message a clear title" required>
 					</div>
-					<div>
-						<label class="block text-sm font-medium text-gray-700">Content</label>
+					<div class="field">
+						<label for="message">Content</label>
 						<textarea class="input h-40" name="message" id="message" placeholder="Write your message here..." required></textarea>
 					</div>
 					<div class="flex justify-end gap-4">
-						<a href="/" class="px-4 py-2 border rounded-md">Cancel</a>
-						<button class="btn-primary" type="submit">Publish message</button>
+						<a href="/" class="btn-secondary">Cancel</a>
+						<button class="btn-primary" type="submit">Publish message <span aria-hidden="true">&rarr;</span></button>
 					</div>
 				</form>
 			</div>

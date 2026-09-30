@@ -7,31 +7,45 @@
 		<link rel="stylesheet" href="/css/output.css">
 		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 	</head>
-	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+	<body class="min-h-screen flex flex-col">
 		<%- include('header', { user: locals.user }) %>
-		<main class="container mx-auto mt-10 flex-1 px-2 md:px-0">
+		<main class="site-container page-main">
 			<% if (!locals.user) { %>
-				<section class="text-center mb-8">
-					<h1 class="text-3xl font-extrabold">Welcome to MemberOnly</h1>
-					<p class="text-gray-600 mt-2">Join the club to post messages and see timestamps.</p>
+				<section class="welcome-hero">
+					<div class="welcome-copy">
+						<p class="eyebrow">Private by design · Better in good company</p>
+						<h1>Good stories stay close.</h1>
+						<p>A members-only space for the notes, ideas and little updates you want to share with your circle.</p>
+						<div class="welcome-actions">
+							<a href="/sign-up" class="btn-primary">Join the club <span aria-hidden="true">&rarr;</span></a>
+							<a href="/login" class="text-link">Already a member? Log in</a>
+						</div>
+					</div>
+					<div class="welcome-note" aria-hidden="true">
+						<div class="note-paper">
+							<span>01 / INSIDE THE CLUB</span>
+							<p>A little corner of the internet that feels like yours.</p>
+							<span class="note-signoff">Shared with your people.</span>
+						</div>
+						<span class="welcome-stamp">M.O.</span>
+					</div>
 				</section>
 			<% } else { %>
-				<section class="flex items-center justify-between mb-6">
+				<section class="feed-heading">
 					<div>
-						<p class="text-sm text-gray-600">Welcome, <%= locals.user.first_name %> <%= locals.user.last_name %></p>
-						<h2 class="text-4xl font-extrabold">Messages</h2>
+						<p class="eyebrow">Your circle</p>
+						<h1>Messages</h1>
+						<p>Welcome back, <%= locals.user.first_name %>. Here's what's new.</p>
 					</div>
-					<div>
-						<% if (locals.user && locals.user.is_member) { %>
-							<a href="/new-message" class="btn-primary"><i class="ri-edit-box-line"></i> New Message</a>
-						<% } else { %>
-							<a href="/become-member" class="px-4 py-2 border rounded-md text-sm">Join the Club</a>
-						<% } %>
-					</div>
+					<% if (locals.user.is_member) { %>
+						<a href="/new-message" class="btn-primary"><i class="ri-edit-box-line" aria-hidden="true"></i> New message</a>
+					<% } else { %>
+						<a href="/become-member" class="btn-secondary">Join the club <span aria-hidden="true">&rarr;</span></a>
+					<% } %>
 				</section>
 			<% } %>
 
-			<section class="px-2 sm:px-0">
+			<section class="feed-list" aria-label="Recent messages">
 				<%- include('showmessages', { messages: locals.messages, user: locals.user }) %>
 			</section>
 		</main>

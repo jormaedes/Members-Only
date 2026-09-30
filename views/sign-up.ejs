@@ -7,27 +7,53 @@
 		<link rel="stylesheet" href="/css/output.css">
 		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 	</head>
-	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
-		<%- include('header', { user: locals.user }) %>
-		<main class="container mx-auto grid place-items-center py-16 flex-1">
-			<div class="w-full max-w-md card">
-				<h2 class="text-2xl font-extrabold text-center mb-2">Create your account</h2>
-				<p class="text-sm text-gray-500 text-center mb-6">Join MemberOnly and become part of the club.</p>
-				<form action="/sign-up" method="post" class="space-y-4">
-					<div class="grid grid-cols-2 gap-4">
-						<input class="input" type="text" id="firstName" name="firstName" placeholder="First name" required>
-						<input class="input" type="text" id="lastName" name="lastName" placeholder="Last name" required>
-					</div>
-					<input class="input" type="text" id="username" name="username" placeholder="Choose a username" required>
-					<input class="input" type="password" id="password" name="password" placeholder="Create a password" required>
-					<input class="input" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required>
-					<div class="flex items-center justify-center">
-						<button class="btn-primary" type="submit">Create account</button>
-					</div>
-				</form>
-				<p class="text-center text-sm text-gray-500 mt-4">Already have an account? <a href="/login" class="text-indigo-600">Log in</a></p>
-			</div>
+	<body class="auth-body">
+		<main class="auth-page">
+			<aside class="auth-aside">
+				<a href="/" class="brand" aria-label="MemberOnly home">
+					<span class="brand-mark">M</span>
+					<span class="brand-name">MemberOnly</span>
+				</a>
+				<div class="auth-message">
+					<p class="eyebrow">A private place to share</p>
+					<h1>Good stories stay close.</h1>
+					<p>A members-only corner for notes, thoughts and the people you know.</p>
+				</div>
+				<p class="auth-aside-note">Small circle. Open conversation.</p>
+			</aside>
+			<section class="auth-form-panel" aria-labelledby="signup-title">
+				<div class="auth-form-inner">
+					<a class="auth-back" href="/">&larr; Back to MemberOnly</a>
+					<h2 id="signup-title" class="mt-7">Join the club</h2>
+					<p class="auth-intro">Create your account and meet your circle.</p>
+					<form action="/sign-up" method="post" class="auth-form">
+						<div class="grid grid-cols-2 gap-3">
+							<div class="field">
+								<label for="firstName">First name</label>
+								<input class="input" type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+							</div>
+							<div class="field">
+								<label for="lastName">Last name</label>
+								<input class="input" type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+							</div>
+						</div>
+						<div class="field">
+							<label for="username">Username</label>
+							<input class="input" type="text" id="username" name="username" autocomplete="username" required>
+						</div>
+						<div class="field">
+							<label for="password">Password</label>
+							<input class="input" type="password" id="password" name="password" autocomplete="new-password" required>
+						</div>
+						<div class="field">
+							<label for="confirmPassword">Confirm password</label>
+							<input class="input" type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" required>
+						</div>
+						<button class="btn-primary auth-submit" type="submit">Create account <span aria-hidden="true">&rarr;</span></button>
+					</form>
+					<p class="auth-switch">Already part of the club? <a href="/login">Log in</a></p>
+				</div>
+			</section>
 		</main>
-		<%- include('footer') %>
 	</body>
 </html>

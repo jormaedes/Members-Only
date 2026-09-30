@@ -9,16 +9,17 @@
 	</head>
 	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
 		<%- include('header') %>
-		<main class="container mx-auto py-16 flex-1">
+		<main class="site-container page-main">
 			<div class="w-full max-w-2xl card">
-				<h2 class="text-xl font-semibold">Confirm delete</h2>
+				<p class="eyebrow">Admin tools</p>
+				<h1 class="text-xl font-semibold">Delete this message?</h1>
 				<div class="mt-4">
 					<p class="font-semibold"><%= message.title %></p>
 					<p class="text-gray-700 mt-2"><%= message.text %></p>
 				</div>
 				<form action="/messages/<%= message.id %>/confirm-delete" method="post" class="mt-6 flex gap-4">
-					<a href="/" class="px-4 py-2 border rounded-md">Cancel</a>
-					<button class="px-4 py-2 bg-red-600 text-white rounded-md">Confirm delete</button>
+					<a href="/" class="btn-secondary">Cancel</a>
+					<button class="btn-danger">Confirm delete</button>
 				</form>
 			</div>
 		</main>

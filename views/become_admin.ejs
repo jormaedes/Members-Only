@@ -9,17 +9,21 @@
 	</head>
 	<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
 		<%- include('header', { user }) %>
-		<main class="container mx-auto grid place-items-center py-16 flex-1">
+		<main class="site-container page-main grid place-items-center">
 			<div class="w-full max-w-md card text-center">
-				<h2 class="text-2xl font-extrabold mb-2">Become an Admin</h2>
+				<p class="eyebrow">For the people who keep things tidy</p>
+				<h1 class="text-2xl font-extrabold mb-2">Become an admin</h1>
 				<p class="text-sm text-gray-600 mb-6">What has teeth but cannot bite?</p>
-				<form action="/become-admin" method="post" class="space-y-4">
-					<input class="input" type="text" name="answer" id="answer" placeholder="Admin passcode">
+				<form action="/become-admin" method="post" class="auth-form">
+					<div class="field">
+						<label for="answer">Your answer</label>
+						<input class="input" type="text" name="answer" id="answer" placeholder="Enter the answer">
+					</div>
 					<% if(locals.errorMsg) { %>
-						<p class="text-sm text-red-600"><%= locals.errorMsg %></p>
+						<p class="auth-error"><%= locals.errorMsg %></p>
 					<% } %>
 					<div class="flex justify-center">
-						<button class="btn-primary" type="submit">Become admin</button>
+						<button class="btn-primary" type="submit">Become admin <span aria-hidden="true">&rarr;</span></button>
 					</div>
 				</form>
 			</div>
